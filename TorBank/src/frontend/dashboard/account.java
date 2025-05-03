@@ -4,6 +4,11 @@
  */
 package frontend.dashboard;
 
+import backend.controllers.UserController;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author DELL
@@ -28,18 +33,148 @@ public class account extends javax.swing.JPanel {
 
         transactions1 = new frontend.dashboard.transactions();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        UpdateName = new javax.swing.JButton();
+        UpdatePassword = new javax.swing.JButton();
+        UpdateAccountType = new javax.swing.JButton();
+        UpdateAge = new javax.swing.JButton();
+        UpdateEmail = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(240, 236, 229));
+
+        jPanel2.setBackground(new java.awt.Color(22, 26, 48));
+
+        jButton1.setText("dashboard");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("transactions");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("account");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(276, Short.MAX_VALUE))
+        );
+
+        UpdateName.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateName.setText("Update Name ");
+        UpdateName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateNameActionPerformed(evt);
+            }
+        });
+
+        UpdatePassword.setBackground(new java.awt.Color(197, 193, 187));
+        UpdatePassword.setText("Update Password");
+        UpdatePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdatePasswordActionPerformed(evt);
+            }
+        });
+
+        UpdateAccountType.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateAccountType.setText("Update Account type");
+        UpdateAccountType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateAccountTypeActionPerformed(evt);
+            }
+        });
+
+        UpdateAge.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateAge.setText("Update Age");
+        UpdateAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateAgeActionPerformed(evt);
+            }
+        });
+
+        UpdateEmail.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateEmail.setText("Update Email");
+        UpdateEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateEmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(UpdateAccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(UpdateAge, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                                .addComponent(UpdatePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(UpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(UpdateEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UpdateEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UpdateAge, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UpdatePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(105, 105, 105)
+                        .addComponent(UpdateAccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -54,9 +189,219 @@ public class account extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Get user ID
+        int userId = UserController.getUserId();
+
+        // Create Dashboard panel
+        Dashboard dashboardPanel = new Dashboard();
+
+        // Get the main JFrame that contains the current panel
+        JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+        // Clear the frame's content and add the dashboard panel
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(dashboardPanel);
+
+        // Refresh the frame to display the new panel
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Create transactions panel
+        transactions transactionsPanel = new transactions();
+
+        // Get the main JFrame that contains this Dashboard panel
+        JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+        // Clear the frame's content and add the transactions panel
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(transactionsPanel);
+
+        // Refresh the frame to display the new panel
+        mainFrame.revalidate();
+        mainFrame.repaint();
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void UpdateNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateNameActionPerformed
+
+        // Get the current user ID
+        int userId = UserController.getUserId();
+        
+        // Get the new name from user input
+        String newName = JOptionPane.showInputDialog(this, "Enter new name:", "Update Name", JOptionPane.QUESTION_MESSAGE);
+        
+        // Check if the user canceled the input or entered an empty string
+        if (newName != null && !newName.trim().isEmpty()) {
+            // Call the updateName method from UserController
+            boolean success = UserController.updateName(userId, newName.trim());
+            
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Name updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to update name. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }//GEN-LAST:event_UpdateNameActionPerformed
+
+    private void UpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatePasswordActionPerformed
+        // Get the current user ID
+    int userId = UserController.getUserId();
+    
+    // Get the current password for validation
+    String currentPassword = JOptionPane.showInputDialog(
+        this, 
+        "Enter current password:", 
+        "Verify Password", 
+        JOptionPane.PLAIN_MESSAGE // Changed from PASSWORD_MESSAGE
+    );
+    
+    // Check if the user canceled the input
+    if (currentPassword != null) {
+        // Verify the current password
+        if (UserController.verifyPassword(userId, currentPassword)) {
+            // Get the new password
+            String newPassword = JOptionPane.showInputDialog(
+                this, 
+                "Enter new password:", 
+                "Update Password", 
+                JOptionPane.PLAIN_MESSAGE // Changed from PASSWORD_MESSAGE
+            );
+            
+            if (newPassword != null && !newPassword.trim().isEmpty()) {
+                // Call the updatePassword method from UserController
+                boolean success = UserController.updatePassword(userId, newPassword);
+                
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Password updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to update password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect current password.", "Authentication Failed", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_UpdatePasswordActionPerformed
+
+    private void UpdateAccountTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountTypeActionPerformed
+        // Get the current user ID
+    int userId = UserController.getUserId();
+    
+    // Create options for account types
+    String[] accountTypes = {"Savings", "Checking"};
+    
+    // Show a dialog to select account type
+    String selectedAccountType = (String) JOptionPane.showInputDialog(
+        this,
+        "Select new account type:",
+        "Update Account Type",
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        accountTypes,
+        accountTypes[0]
+    );
+    
+    // Check if the user selected an account type
+    if (selectedAccountType != null) {
+        try {
+            // Now get password verification
+            String password = JOptionPane.showInputDialog(this, "Enter your password:", "Password Verification", JOptionPane.QUESTION_MESSAGE);
+            
+            if (password != null && !password.trim().isEmpty()) {
+                // First verify the password
+                boolean passwordCorrect = UserController.verifyPassword(userId, password);
+                
+                if (passwordCorrect) {
+                    // Call the updateAccountType method without needing account number
+                    boolean success = UserController.updateAccountType(userId, selectedAccountType);
+                    
+                    if (success) {
+                        JOptionPane.showMessageDialog(this, "Account type updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Failed to update account type.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Incorrect password. Operation cancelled.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_UpdateAccountTypeActionPerformed
+
+    private void UpdateAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAgeActionPerformed
+        // Get the current user ID
+        int userId = UserController.getUserId();
+        
+        // Get the new age from user input
+        String ageStr = JOptionPane.showInputDialog(this, "Enter new age:", "Update Age", JOptionPane.QUESTION_MESSAGE);
+        
+        // Check if the user canceled the input or entered an empty string
+        if (ageStr != null && !ageStr.trim().isEmpty()) {
+            try {
+                int newAge = Integer.parseInt(ageStr.trim());
+                
+                // Validate age
+                if (newAge <= 0) {
+                    JOptionPane.showMessageDialog(this, "Please enter a valid age.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                // Call the updateAge method from UserController
+                boolean success = UserController.updateAge(userId, newAge);
+                
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Age updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to update age. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Invalid age. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_UpdateAgeActionPerformed
+
+    private void UpdateEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateEmailActionPerformed
+        // Get the current user ID
+    int userId = UserController.getUserId();
+    
+    // Get the new email from user input
+    String newEmail = JOptionPane.showInputDialog(this, "Enter new email:", "Update Email", JOptionPane.QUESTION_MESSAGE);
+    
+    // Check if the user canceled the input or entered an empty string
+    if (newEmail != null && !newEmail.trim().isEmpty()) {
+        // Call the updateEmail method from UserController
+        boolean success = UserController.updateEmail(userId, newEmail.trim());
+        
+        if (success) {
+            JOptionPane.showMessageDialog(this, "Email updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to update email. The email might already be in use.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_UpdateEmailActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton UpdateAccountType;
+    private javax.swing.JButton UpdateAge;
+    private javax.swing.JButton UpdateEmail;
+    private javax.swing.JButton UpdateName;
+    private javax.swing.JButton UpdatePassword;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private frontend.dashboard.transactions transactions1;
     // End of variables declaration//GEN-END:variables
 }

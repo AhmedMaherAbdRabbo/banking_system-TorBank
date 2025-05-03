@@ -5,6 +5,7 @@
 package frontend.dashboard;
 
 import backend.connections.DatabaseConnections;
+import backend.controllers.UserController;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,8 +30,56 @@ public class Dashboard extends javax.swing.JPanel {
     private long accountNumber;
     
     public Dashboard() {
-        initComponents();
+    initComponents();
+    loadUserData(); // Load user data when dashboard is created
+}
+    
+    private void loadUserData() {
+    int userId = UserController.getUserId();
+    try (Connection conn = DatabaseConnections.getConnection()) {
+        if (conn == null) return;
+
+        // Load user info
+        String userSql = "SELECT name FROM users WHERE user_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(userSql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                name.setText("<html>Name : <br><br><br>" + rs.getString("name") + "</html>");
+            }
+        }
+
+        // Load account info
+        String accountSql = "SELECT account_number, account_type FROM accounts WHERE user_id = ? LIMIT 1";
+        try (PreparedStatement stmt = conn.prepareStatement(accountSql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                AccNum.setText("<html>Account Number : <br><br><br>" + rs.getLong("account_number") + "</html>");
+                AccountType.setText("<html>Account Type : <br><br><br>" + rs.getString("account_type") + "</html>");
+            }
+        }
+
+        // Load last transaction
+        String transSql = "SELECT transaction_type, amount, transaction_date FROM transactions " +
+                         "WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1";
+        try (PreparedStatement stmt = conn.prepareStatement(transSql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String lastTrans = String.format("%s: $%.2f on %s",
+                    rs.getString("transaction_type"),
+                    rs.getDouble("amount"),
+                    rs.getTimestamp("transaction_date"));
+                LastTransaction.setText("<html>Last Transaction : <br><br><br>" + lastTrans + "</html>");
+            } else {
+                LastTransaction.setText("<html>Last Transaction : <br><br><br>None</html>");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 
 
     public void updateUserInfo(String userName, String accountType, long accountNumber, String lastTransaction) {
@@ -146,8 +195,8 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(LastTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
