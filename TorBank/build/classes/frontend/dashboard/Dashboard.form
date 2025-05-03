@@ -39,39 +39,39 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="AccNum" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="name" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="AccNum" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="name" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="111" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="AccountType" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="LastTransaction" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="AccountType" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="LastTransaction" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AccountType" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="name" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="name" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="AccountType" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="LastTransaction" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="AccNum" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="LastTransaction" pref="85" max="32767" attributes="0"/>
+                      <Component id="AccNum" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="232" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,13 +101,13 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace pref="290" max="32767" attributes="0"/>
+                      <EmptySpace pref="194" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -115,11 +115,23 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="bb" green="c1" red="c5" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="dashboard"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="bb" green="c1" red="c5" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="account"/>
               </Properties>
               <Events>
@@ -128,6 +140,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="bb" green="c1" red="c5" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="transactions"/>
               </Properties>
               <Events>

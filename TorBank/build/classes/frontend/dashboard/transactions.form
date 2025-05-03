@@ -39,17 +39,30 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Withdraw" min="-2" pref="176" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="Withdraw" min="-2" pref="176" max="-2" attributes="0"/>
+                          <EmptySpace pref="159" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TransactionHistory" min="-2" pref="176" max="-2" attributes="0"/>
+                              <Component id="Deposit" min="-2" pref="176" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="CheckBalnced" min="-2" pref="176" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
                       <Component id="FundTransfer" min="-2" pref="176" max="-2" attributes="0"/>
+                      <EmptySpace pref="419" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="159" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="TransactionHistory" min="-2" pref="176" max="-2" attributes="0"/>
-                      <Component id="Deposit" min="-2" pref="176" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -62,16 +75,22 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="FundTransfer" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="Deposit" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="Deposit" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="CheckBalnced" min="-2" pref="53" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Withdraw" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="TransactionHistory" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                      <Component id="FundTransfer" min="-2" pref="53" max="-2" attributes="0"/>
+                      <EmptySpace pref="450" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,15 +158,15 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="FundTransfer">
+        <Component class="javax.swing.JButton" name="CheckBalnced">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="bb" green="c1" red="c5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fund transfer"/>
+            <Property name="text" type="java.lang.String" value="Check balnced"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FundTransferActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBalncedActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Withdraw">
@@ -181,6 +200,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DepositActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="FundTransfer">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="bb" green="c1" red="c5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fund transfer"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FundTransferActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

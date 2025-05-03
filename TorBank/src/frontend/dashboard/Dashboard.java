@@ -4,9 +4,17 @@
  */
 package frontend.dashboard;
 
+import backend.connections.DatabaseConnections;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
+
 
 /**
  *
@@ -17,15 +25,22 @@ public class Dashboard extends javax.swing.JPanel {
     /**
      * Creates new form Dashboard
      */
+    private int userId;
+    private long accountNumber;
+    
     public Dashboard() {
         initComponents();
-        name.setText("Name: ");
-        AccountType.setText("Account Type: ");
-        AccNum.setText("Account Number: ");
-        LastTransaction.setText("Last Transaction: ");
     }
 
-    
+
+    public void updateUserInfo(String userName, String accountType, long accountNumber, String lastTransaction) {
+    Font labelFont = new Font("Arial", Font.BOLD, 14);
+    Font valueFont = new Font("Arial", Font.PLAIN, 14);
+    name.setText("<html>Name : <br><br><br>" + userName + "</html>");
+    AccountType.setText("<html>Account Type : <br><br><br>" + accountType + "</html>");
+    AccNum.setText("<html>Account Number : <br><br><br>" + accountNumber + "</html>");
+    LastTransaction.setText("<html>Last Transaction : <br><br><br>" + lastTransaction + "</html>");
+}
     
     
     /**
@@ -51,8 +66,12 @@ public class Dashboard extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(22, 26, 48));
 
+        jButton1.setBackground(new java.awt.Color(197, 193, 187));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("dashboard");
 
+        jButton2.setBackground(new java.awt.Color(197, 193, 187));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("account");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +79,8 @@ public class Dashboard extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(197, 193, 187));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("transactions");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,13 +103,13 @@ public class Dashboard extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(75, 75, 75)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(50, 50, 50)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(51, 51, 51)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         AccountType.setText("Account Type");
@@ -106,32 +127,32 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(90, 90, 90)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                    .addComponent(AccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LastTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(99, 99, 99))
+                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LastTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(111, 111, 111))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(183, 183, 183)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LastTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGap(82, 82, 82)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LastTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(AccNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(169, 169, 169))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -147,38 +168,38 @@ public class Dashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // أنشئ صفحة transactions
-    transactions transactionsPanel = new transactions();
-    
-            // Get the main JFrame that contains this Login panel
-            JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            
-            // Clear the frame's content and add the Dashboard panel
-            mainFrame.getContentPane().removeAll();
-            mainFrame.getContentPane().add(transactionsPanel);
-            
-            // Refresh the frame to display the new panel
-            mainFrame.revalidate();
-            mainFrame.repaint();
-
-    // إخفاء الإطار الحالي
-    this.setVisible(false);
+        // Create transactions panel
+        transactions transactionsPanel = new transactions();
+        
+        // Get the main JFrame that contains this Dashboard panel
+        JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        
+        // Clear the frame's content and add the transactions panel
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(transactionsPanel);
+        
+        // Refresh the frame to display the new panel
+        mainFrame.revalidate();
+        mainFrame.repaint();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // أنشئ صفحة Account
-    account accountPanel = new account();
-
-    // أنشئ نافذة جديدة للـ Account
-    JFrame frame = new JFrame("Account Page");
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // غلق الإطار عند إغلاقه
-    frame.setContentPane(accountPanel);  // تعيين panel جديد كـ content
-    frame.pack();  // تهيئة حجم النافذة
-    frame.setLocationRelativeTo(null);  // وضع الإطار في منتصف الشاشة
-    frame.setVisible(true);  // جعل النافذة مرئية
-
-    // إخفاء الإطار الحالي
-    this.setVisible(false);
+        // Create account panel
+        account accountPanel = new account();
+        
+        // Get the main JFrame that contains this Dashboard panel
+        JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        
+        // Clear the frame's content and add the account panel
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(accountPanel);
+        
+        // Refresh the frame to display the new panel
+        mainFrame.revalidate();
+        mainFrame.repaint();
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

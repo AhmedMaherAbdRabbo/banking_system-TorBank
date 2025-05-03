@@ -54,10 +54,11 @@ public class transactions extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        FundTransfer = new javax.swing.JButton();
+        CheckBalnced = new javax.swing.JButton();
         Withdraw = new javax.swing.JButton();
         TransactionHistory = new javax.swing.JButton();
         Deposit = new javax.swing.JButton();
+        FundTransfer = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(240, 236, 229));
 
@@ -108,11 +109,11 @@ public class transactions extends javax.swing.JPanel {
                 .addContainerGap(290, Short.MAX_VALUE))
         );
 
-        FundTransfer.setBackground(new java.awt.Color(197, 193, 187));
-        FundTransfer.setText("Fund transfer");
-        FundTransfer.addActionListener(new java.awt.event.ActionListener() {
+        CheckBalnced.setBackground(new java.awt.Color(197, 193, 187));
+        CheckBalnced.setText("Check balnced");
+        CheckBalnced.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FundTransferActionPerformed(evt);
+                CheckBalncedActionPerformed(evt);
             }
         });
 
@@ -140,6 +141,14 @@ public class transactions extends javax.swing.JPanel {
             }
         });
 
+        FundTransfer.setBackground(new java.awt.Color(197, 193, 187));
+        FundTransfer.setText("Fund transfer");
+        FundTransfer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FundTransferActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,15 +156,24 @@ public class transactions extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(94, 94, 94))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CheckBalnced, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(263, 263, 263))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(330, 330, 330)
+                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(419, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,14 +183,19 @@ public class transactions extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(117, 117, 117)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CheckBalnced, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(145, 145, 145))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(127, 127, 127)
+                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(450, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -191,9 +214,41 @@ public class transactions extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void FundTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundTransferActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FundTransferActionPerformed
+    private void CheckBalncedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBalncedActionPerformed
+
+        try {
+        // Get current user's account balance
+        int userId = UserController.getUserId();
+        String sql = "SELECT balance FROM accounts WHERE user_id = ?";
+        
+        try (Connection conn = DatabaseConnections.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                double balance = rs.getDouble("balance");
+                JOptionPane.showMessageDialog(this, 
+                    "Your balance: $" + balance,
+                    "Account Balance", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "No account found",
+                    "Error", 
+                    JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, 
+            "Error checking balance",
+            "Database Error", 
+            JOptionPane.ERROR_MESSAGE);
+    }
+        
+        
+    }//GEN-LAST:event_CheckBalncedActionPerformed
 
     private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
     // أنشئ صفحة Withdraw
@@ -266,39 +321,64 @@ public class transactions extends javax.swing.JPanel {
     }//GEN-LAST:event_DepositActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // أنشئ صفحة Dashboard
+    // Get user ID
+    int userId = UserController.getUserId();
+
+    // Create Dashboard panel
     Dashboard dashboardPanel = new Dashboard();
 
-    // أنشئ نافذة جديدة للـ Dashboard
-    JFrame frame = new JFrame("Dashboard Page");
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // غلق الإطار عند إغلاقه
-    frame.setContentPane(dashboardPanel);  // تعيين panel جديد كـ content
-    frame.pack();  // تهيئة حجم النافذة
-    frame.setLocationRelativeTo(null);  // وضع الإطار في منتصف الشاشة
-    frame.setVisible(true);  // جعل النافذة مرئية
+    // Get the main JFrame that contains the current panel
+    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إخفاء الإطار الحالي
-    this.setVisible(false);
+    // Clear the frame's content and add the dashboard panel
+    mainFrame.getContentPane().removeAll();
+    mainFrame.getContentPane().add(dashboardPanel);
+
+    // Refresh the frame to display the new panel
+    mainFrame.revalidate();
+    mainFrame.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
         // أنشئ صفحة Account
-    account accountPanel = new account();
+account accountPanel = new account();
 
-    // أنشئ نافذة جديدة للـ Account
-    JFrame frame = new JFrame("Account Page");
+    // الحصول على الإطار الرئيسي الذي يحتوي على هذا الـ panel
+    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+    // إزالة جميع المحتويات من الإطار وإضافة لوحة الحساب
+    mainFrame.getContentPane().removeAll();
+    mainFrame.getContentPane().add(accountPanel);
+
+    // تحديث الإطار لعرض اللوحة الجديدة
+    mainFrame.revalidate();
+    mainFrame.repaint();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void FundTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundTransferActionPerformed
+
+        // أنشئ صفحة FundTransfer
+    FundTransfer fundTransferPanel = new FundTransfer();
+
+    // أنشئ نافذة جديدة للـ FundTransfer
+    JFrame frame = new JFrame("Fund Transfer Page");
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // غلق الإطار عند إغلاقه
-    frame.setContentPane(accountPanel);  // تعيين panel جديد كـ content
+    frame.setContentPane(fundTransferPanel);  // تعيين panel جديد كـ content
     frame.pack();  // تهيئة حجم النافذة
     frame.setLocationRelativeTo(null);  // وضع الإطار في منتصف الشاشة
     frame.setVisible(true);  // جعل النافذة مرئية
 
     // إخفاء الإطار الحالي
     this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        
+    }//GEN-LAST:event_FundTransferActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CheckBalnced;
     private javax.swing.JButton Deposit;
     private javax.swing.JButton FundTransfer;
     private javax.swing.JButton TransactionHistory;

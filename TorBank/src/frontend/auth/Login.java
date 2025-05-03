@@ -190,27 +190,35 @@ public class Login extends javax.swing.JPanel {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
 
-    String email = userNametf.getText();
+    
+        String email = userNametf.getText().trim();
     String password = new String(passwordtf.getPassword());
-
+    
+    // Basic validation
+    if (email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Email and password cannot be empty", "Login Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
-
+    
     try {
         conn = DatabaseConnections.getConnection();
         if (conn == null) {
-            JOptionPane.showMessageDialog(null, "Failed to connect to the database");
+            JOptionPane.showMessageDialog(this, "Failed to connect to the database", "Database Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
+        // Use PreparedStatement to prevent SQL injection
         String sql = "SELECT user_id, email FROM users WHERE email = ? AND password = ?";
         stmt = conn.prepareStatement(sql);
         stmt.setString(1, email);
         stmt.setString(2, password);
-
+        
         rs = stmt.executeQuery();
-
+        
         if (rs.next()) {
             // Get user details from result set
             int userId = rs.getInt("user_id");
@@ -219,39 +227,118 @@ public class Login extends javax.swing.JPanel {
             // Store user details in UserController
             UserController.setUserDetails(userId, userEmail);
             
-            JOptionPane.showMessageDialog(null, "Login successful. Welcome!");
+            // Variables to store user information
+            String userName = "";
+            String accountType = "";
+            long accountNumber = 0;
+            String lastTransaction = "No transactions found";
+            double balance = 0.0;
             
+            // Get user name and additional information
+            try (PreparedStatement nameStmt = conn.prepareStatement("SELECT name FROM users WHERE user_id = ?")) {
+                nameStmt.setInt(1, userId);
+                try (ResultSet nameRs = nameStmt.executeQuery()) {
+                    if (nameRs.next()) {
+                        userName = nameRs.getString("name");
+                    }
+                }
+                
+                // Get account information using try-with-resources
+                try (PreparedStatement accountStmt = conn.prepareStatement(
+                        "SELECT account_number, account_type, balance FROM accounts WHERE user_id = ?")) {
+                    accountStmt.setInt(1, userId);
+                    try (ResultSet accountRs = accountStmt.executeQuery()) {
+                        if (accountRs.next()) {
+                            accountNumber = accountRs.getLong("account_number");
+                            accountType = accountRs.getString("account_type");
+                            balance = accountRs.getDouble("balance");
+                        }
+                    }
+                }
+                
+                // Get last transaction with improved query
+                try (PreparedStatement transStmt = conn.prepareStatement(
+                        "SELECT transaction_type, amount, transaction_date FROM transactions " +
+                        "WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1")) {
+                    transStmt.setInt(1, userId);
+                    try (ResultSet transRs = transStmt.executeQuery()) {
+                        if (transRs.next()) {
+                            String type = transRs.getString("transaction_type");
+                            double amount = transRs.getDouble("amount");
+                            String date = transRs.getTimestamp("transaction_date").toString();
+                            lastTransaction = type + ": $" + String.format("%.2f", amount) + " on " + date;
+                        }
+                    }
+                }
+                
+                // Log successful login (optional)
+                try (PreparedStatement logStmt = conn.prepareStatement(
+                        "INSERT INTO login_logs (user_id, login_time, status) VALUES (?, NOW(), ?)")) {
+                    logStmt.setInt(1, userId);
+                    logStmt.setString(2, "SUCCESS");
+                    logStmt.executeUpdate();
+                } catch (SQLException logEx) {
+                    // Non-critical error, don't disrupt login process
+                    System.err.println("Could not log login attempt: " + logEx.getMessage());
+                }
+                
+            } catch (SQLException e) {
+                System.err.println("Error retrieving user data: " + e.getMessage());
+                // Continue with login process using default values
+            }
+            
+            JOptionPane.showMessageDialog(this, "Login successful. Welcome, " + userName + "!", 
+                                         "Login Success", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Create and configure Dashboard panel
             Dashboard dashboardPanel = new Dashboard();
+            dashboardPanel.updateUserInfo(userName, accountType, accountNumber, lastTransaction);
             
-            // Get the main JFrame that contains this Login panel
+            // Get the main JFrame and switch to Dashboard
             JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            
-            // Clear the frame's content and add the Dashboard panel
             mainFrame.getContentPane().removeAll();
             mainFrame.getContentPane().add(dashboardPanel);
             
-            dashboardPanel.setSize(dashboardPanel.getPreferredSize());
-            dashboardPanel.setPreferredSize(dashboardPanel.getPreferredSize());
+            // Set appropriate size
             mainFrame.pack();
             
-            // Refresh the frame to display the new panel
-            mainFrame.revalidate();
-            mainFrame.repaint();            
+            // Center the frame on screen (optional)
+            mainFrame.setLocationRelativeTo(null);
             
+            // Refresh UI
+            mainFrame.revalidate();
+            mainFrame.repaint();
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid email or password");
+            // Failed login
+            JOptionPane.showMessageDialog(this, "Invalid email or password", 
+                                         "Login Failed", JOptionPane.ERROR_MESSAGE);
+            
+            // Clear password field for security
+            passwordtf.setText("");
+            
+            // Optional: Log failed login attempt
+            try (PreparedStatement logStmt = conn.prepareStatement(
+                    "INSERT INTO login_logs (email, login_time, status) VALUES (?, NOW(), ?)")) {
+                logStmt.setString(1, email);
+                logStmt.setString(2, "FAILED");
+                logStmt.executeUpdate();
+            } catch (SQLException logEx) {
+                // Non-critical error
+                System.err.println("Could not log failed login attempt: " + logEx.getMessage());
+            }
         }
     } catch (SQLException e) {
         e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), 
+                                     "Database Error", JOptionPane.ERROR_MESSAGE);
     } finally {
-        // Close resources
+        // Close resources in reverse order of creation
         try {
             if (rs != null) rs.close();
             if (stmt != null) stmt.close();
             if (conn != null && !conn.isClosed()) conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error closing database resources: " + e.getMessage());
         }
     }
     
