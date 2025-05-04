@@ -159,10 +159,10 @@ public class FundTransfer extends javax.swing.JPanel {
     // Get transfer details from UI
     long fromAccount = Long.parseLong(fromAccountField.getText());
     long toAccount = Long.parseLong(transferAmountField.getText());
-    double transferAmount = Double.parseDouble(transferAmountField.getText());
+    double amount = Double.parseDouble(transferAmount.getText());  // FIXED: Use transferAmount field for the amount
 
     // Validate basic input
-    if (transferAmount <= 0) {
+    if (amount <= 0) {
         JOptionPane.showMessageDialog(null, "Transfer amount must be greater than zero.");
         return;
     }
@@ -197,17 +197,20 @@ public class FundTransfer extends javax.swing.JPanel {
 
             if (!accountBalances.containsKey(fromAccount)) {
                 JOptionPane.showMessageDialog(null, "Source account not found.");
+                conn.rollback();  // Added rollback
                 return;
             }
 
             if (!accountBalances.containsKey(toAccount)) {
                 JOptionPane.showMessageDialog(null, "Destination account not found.");
+                conn.rollback();  // Added rollback
                 return;
             }
 
             // 2. Check sufficient funds in source account
-            if (accountBalances.get(fromAccount) < transferAmount) {
+            if (accountBalances.get(fromAccount) < amount) {
                 JOptionPane.showMessageDialog(null, "Insufficient funds for transfer.");
+                conn.rollback();  // Added rollback
                 return;
             }
 
@@ -215,14 +218,14 @@ public class FundTransfer extends javax.swing.JPanel {
             // Deduct from source account
             String sqlUpdateFrom = "UPDATE accounts SET balance = balance - ? WHERE account_number = ?";
             PreparedStatement stmtUpdateFrom = conn.prepareStatement(sqlUpdateFrom);
-            stmtUpdateFrom.setDouble(1, transferAmount);
+            stmtUpdateFrom.setDouble(1, amount);
             stmtUpdateFrom.setLong(2, fromAccount);
             int fromUpdated = stmtUpdateFrom.executeUpdate();
 
             // Add to destination account
             String sqlUpdateTo = "UPDATE accounts SET balance = balance + ? WHERE account_number = ?";
             PreparedStatement stmtUpdateTo = conn.prepareStatement(sqlUpdateTo);
-            stmtUpdateTo.setDouble(1, transferAmount);
+            stmtUpdateTo.setDouble(1, amount);
             stmtUpdateTo.setLong(2, toAccount);
             int toUpdated = stmtUpdateTo.executeUpdate();
 
@@ -246,7 +249,7 @@ public class FundTransfer extends javax.swing.JPanel {
             PreparedStatement stmtTransaction = conn.prepareStatement(sqlTransaction);
             stmtTransaction.setLong(1, fromAccount);
             stmtTransaction.setLong(2, toAccount);
-            stmtTransaction.setDouble(3, transferAmount);
+            stmtTransaction.setDouble(3, amount);
             stmtTransaction.setString(4, "Transfer");
             stmtTransaction.setInt(5, userId);
 
@@ -255,8 +258,13 @@ public class FundTransfer extends javax.swing.JPanel {
             if (rowsInserted > 0) {
                 conn.commit();
                 JOptionPane.showMessageDialog(null, 
-                    "Transfer successful! $" + transferAmount + " transferred from account " + 
+                    "Transfer successful! $" + amount + " transferred from account " + 
                     fromAccount + " to account " + toAccount);
+                
+                // Clear input fields after successful transfer
+                fromAccountField.setText("");
+                transferAmountField.setText("");
+                transferAmount.setText("");
             } else {
                 conn.rollback();
                 JOptionPane.showMessageDialog(null, "Failed to record transaction.");
@@ -268,6 +276,8 @@ public class FundTransfer extends javax.swing.JPanel {
     } catch (SQLException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Please enter valid numbers for account numbers and amount.");
     }
     }//GEN-LAST:event_FundTransferActionPerformed
 
