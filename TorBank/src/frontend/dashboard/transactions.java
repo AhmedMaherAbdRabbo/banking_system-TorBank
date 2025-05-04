@@ -51,9 +51,9 @@ public class transactions extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Go2Dash = new javax.swing.JButton();
+        Go2Account = new javax.swing.JButton();
+        Go2Trans = new javax.swing.JButton();
         CheckBalnced = new javax.swing.JButton();
         Withdraw = new javax.swing.JButton();
         TransactionHistory = new javax.swing.JButton();
@@ -64,24 +64,33 @@ public class transactions extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(22, 26, 48));
 
-        jButton1.setText("dashboard");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Go2Dash.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Dash.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Dash.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Dash.setText("Dashboard");
+        Go2Dash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Go2DashActionPerformed(evt);
             }
         });
 
-        jButton2.setText("account");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Go2Account.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Account.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Account.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Account.setText("Account");
+        Go2Account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Go2AccountActionPerformed(evt);
             }
         });
 
-        jButton3.setText("transactions");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Go2Trans.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Trans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Trans.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Trans.setText("Transactions");
+        Go2Trans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                Go2TransActionPerformed(evt);
             }
         });
 
@@ -92,24 +101,26 @@ public class transactions extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Go2Trans, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Go2Account, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Go2Dash, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addComponent(Go2Dash, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(Go2Trans, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(Go2Account, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CheckBalnced.setBackground(new java.awt.Color(197, 193, 187));
+        CheckBalnced.setBackground(new java.awt.Color(163, 154, 140));
+        CheckBalnced.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CheckBalnced.setForeground(new java.awt.Color(255, 255, 255));
         CheckBalnced.setText("Check balnced");
         CheckBalnced.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +128,9 @@ public class transactions extends javax.swing.JPanel {
             }
         });
 
-        Withdraw.setBackground(new java.awt.Color(197, 193, 187));
+        Withdraw.setBackground(new java.awt.Color(163, 154, 140));
+        Withdraw.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Withdraw.setForeground(new java.awt.Color(255, 255, 255));
         Withdraw.setText("Withdraw");
         Withdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +138,9 @@ public class transactions extends javax.swing.JPanel {
             }
         });
 
-        TransactionHistory.setBackground(new java.awt.Color(197, 193, 187));
+        TransactionHistory.setBackground(new java.awt.Color(163, 154, 140));
+        TransactionHistory.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        TransactionHistory.setForeground(new java.awt.Color(255, 255, 255));
         TransactionHistory.setText("Transaction history");
         TransactionHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +148,9 @@ public class transactions extends javax.swing.JPanel {
             }
         });
 
-        Deposit.setBackground(new java.awt.Color(197, 193, 187));
+        Deposit.setBackground(new java.awt.Color(163, 154, 140));
+        Deposit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Deposit.setForeground(new java.awt.Color(255, 255, 255));
         Deposit.setText("Deposit");
         Deposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +158,9 @@ public class transactions extends javax.swing.JPanel {
             }
         });
 
-        FundTransfer.setBackground(new java.awt.Color(197, 193, 187));
+        FundTransfer.setBackground(new java.awt.Color(163, 154, 140));
+        FundTransfer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        FundTransfer.setForeground(new java.awt.Color(255, 255, 255));
         FundTransfer.setText("Fund transfer");
         FundTransfer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,46 +175,39 @@ public class transactions extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                        .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CheckBalnced, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(263, 263, 263))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(330, 330, 330)
-                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(419, Short.MAX_VALUE)))
+                            .addComponent(CheckBalnced, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Deposit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FundTransfer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CheckBalnced, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102)
+                .addGap(73, 73, 73)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(145, 145, 145))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(127, 127, 127)
-                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(450, Short.MAX_VALUE)))
+                    .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckBalnced, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FundTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addComponent(TransactionHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -210,9 +222,9 @@ public class transactions extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void Go2TransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2TransActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_Go2TransActionPerformed
 
     private void CheckBalncedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBalncedActionPerformed
 
@@ -251,19 +263,27 @@ public class transactions extends javax.swing.JPanel {
     }//GEN-LAST:event_CheckBalncedActionPerformed
 
     private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
-    // أنشئ صفحة Withdraw
+    // أنشئ panel الخاصة بـ Withdraw
     Withdraw withdrawPanel = new Withdraw();
 
-    // أنشئ نافذة جديدة للـ Withdraw
-    JFrame frame = new JFrame("Withdraw Page");
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // غلق الإطار عند إغلاقه
-    frame.setContentPane(withdrawPanel);  // تعيين panel جديد كـ content
-    frame.pack();  // تهيئة حجم النافذة
-    frame.setLocationRelativeTo(null);  // وضع الإطار في منتصف الشاشة
-    frame.setVisible(true);  // جعل النافذة مرئية
+    // الحصول على JFrame الرئيسي
+    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إخفاء الإطار الحالي
-    this.setVisible(false);
+    // إزالة جميع المحتويات القديمة
+    mainFrame.getContentPane().removeAll();
+
+    // إضافة panel الجديدة
+    mainFrame.getContentPane().add(withdrawPanel);
+
+    // إعادة ترتيب العناصر
+    mainFrame.pack();  // تجعل حجم الإطار يتناسب مع حجم الـ panel الجديدة
+
+    // إعادة رسم وتحديث الإطار
+    mainFrame.revalidate();
+    mainFrame.repaint();
+
+    // إعادة وضع النافذة في منتصف الشاشة (اختياري)
+    mainFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_WithdrawActionPerformed
 
     private void TransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransactionHistoryActionPerformed
@@ -308,19 +328,27 @@ public class transactions extends javax.swing.JPanel {
         // أنشئ صفحة Deposit
     Deposit depositPanel = new Deposit();
 
-    // أنشئ نافذة جديدة للـ Deposit
-    JFrame frame = new JFrame("Deposit Page");
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // غلق الإطار عند إغلاقه
-    frame.setContentPane(depositPanel);  // تعيين panel جديد كـ content
-    frame.pack();  // تهيئة حجم النافذة
-    frame.setLocationRelativeTo(null);  // وضع الإطار في منتصف الشاشة
-    frame.setVisible(true);  // جعل النافذة مرئية
+    // الحصول على JFrame الرئيسي
+    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إخفاء الإطار الحالي
-    this.setVisible(false);
+    // إزالة جميع المحتويات القديمة
+    mainFrame.getContentPane().removeAll();
+
+    // إضافة panel الجديدة
+    mainFrame.getContentPane().add(depositPanel);
+
+    // إعادة ترتيب العناصر
+    mainFrame.pack();  // تجعل حجم الإطار يتناسب مع حجم الـ panel الجديدة
+
+    // إعادة رسم وتحديث الإطار
+    mainFrame.revalidate();
+    mainFrame.repaint();
+
+    // إعادة وضع النافذة في منتصف الشاشة (اختياري)
+    mainFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_DepositActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Go2DashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2DashActionPerformed
     // Get user ID
     int userId = UserController.getUserId();
 
@@ -337,9 +365,9 @@ public class transactions extends javax.swing.JPanel {
     // Refresh the frame to display the new panel
     mainFrame.revalidate();
     mainFrame.repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Go2DashActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void Go2AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2AccountActionPerformed
        
         // أنشئ صفحة Account
 account accountPanel = new account();
@@ -355,23 +383,29 @@ account accountPanel = new account();
     mainFrame.revalidate();
     mainFrame.repaint();
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Go2AccountActionPerformed
 
     private void FundTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundTransferActionPerformed
 
-        // أنشئ صفحة FundTransfer
+    // أنشئ صفحة FundTransfer
     FundTransfer fundTransferPanel = new FundTransfer();
 
-    // أنشئ نافذة جديدة للـ FundTransfer
-    JFrame frame = new JFrame("Fund Transfer Page");
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // غلق الإطار عند إغلاقه
-    frame.setContentPane(fundTransferPanel);  // تعيين panel جديد كـ content
-    frame.pack();  // تهيئة حجم النافذة
-    frame.setLocationRelativeTo(null);  // وضع الإطار في منتصف الشاشة
-    frame.setVisible(true);  // جعل النافذة مرئية
+    // الحصول على JFrame الرئيسي
+    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إخفاء الإطار الحالي
-    this.setVisible(false);
+    // إزالة كل ما هو موجود حاليًا في الـ JFrame
+    mainFrame.getContentPane().removeAll();
+
+    // إضافة panel الجديدة
+    mainFrame.getContentPane().add(fundTransferPanel);
+
+    // ضبط حجم الإطار حسب الحجم الطبيعي للـ panel الجديدة
+    mainFrame.pack();
+
+    // تحديث وتمركز الإطار
+    mainFrame.revalidate();
+    mainFrame.repaint();
+    mainFrame.setLocationRelativeTo(null);  // لتوسيط النافذة
         
         
     }//GEN-LAST:event_FundTransferActionPerformed
@@ -381,11 +415,11 @@ account accountPanel = new account();
     private javax.swing.JButton CheckBalnced;
     private javax.swing.JButton Deposit;
     private javax.swing.JButton FundTransfer;
+    private javax.swing.JButton Go2Account;
+    private javax.swing.JButton Go2Dash;
+    private javax.swing.JButton Go2Trans;
     private javax.swing.JButton TransactionHistory;
     private javax.swing.JButton Withdraw;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

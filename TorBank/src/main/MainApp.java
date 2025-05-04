@@ -8,21 +8,19 @@ import javax.swing.JPanel;
 public class MainApp extends JFrame {
 
     public MainApp() {
-        // إعدادات نافذة التطبيق
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // إنهاء التطبيق عند غلق النافذة
-        setResizable(true); // منع تغيير حجم النافذة
-        setLocation(480, 150); // تحديد موقع النافذة
-        setSize(671, 539); // تحديد حجم النافذة
-        setTitle("Main App"); // تحديد عنوان النافذة
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false); 
+        setLocation(480, 150); 
+        setSize(671, 539);
+        setTitle("Tor Bank"); 
 
-        // إضافة نافذة تسجيل الدخول
-        add(new Login()); // إضافة الـ LoginPanel كجزء من الـ JFrame
+        add(new Login());
     }
 
     public static void main(String[] args) {
-        // تشغيل التطبيق في واجهة المستخدم (واجهة الرسوميات)
+        
         java.awt.EventQueue.invokeLater(() -> {
-            new MainApp().setVisible(true); // عرض نافذة MainApp
+            new MainApp().setVisible(true);
         });
     }
 }

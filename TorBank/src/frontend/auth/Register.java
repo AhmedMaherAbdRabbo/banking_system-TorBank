@@ -284,7 +284,7 @@ public class Register extends javax.swing.JPanel {
             return;
         }
 
-        // 1. إنشاء المستخدم
+        
         String sqlUser = "INSERT INTO users (name, email, age, password) VALUES (?, ?, ?, ?)";
         PreparedStatement stmtUser = conn.prepareStatement(sqlUser, java.sql.Statement.RETURN_GENERATED_KEYS);
 
@@ -296,17 +296,17 @@ public class Register extends javax.swing.JPanel {
         int rowsAffected = stmtUser.executeUpdate();
 
         if (rowsAffected > 0) {
-            // 2. الحصول على user_id اللي اتولد
+            
             ResultSet generatedKeys = stmtUser.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int userId = generatedKeys.getInt(1);
 
-                // 3. إنشاء الحساب المرتبط بالمستخدم
+                
                 String sqlAccount = "INSERT INTO accounts (account_number, account_type, balance, user_id) VALUES (?, ?, ?, ?)";
                 PreparedStatement stmtAccount = conn.prepareStatement(sqlAccount);
                 
-                long accountNumber = System.currentTimeMillis(); // توليد رقم حساب مؤقت
-                String accountType = "Savings"; // أو "Checking" حسب اختيار المستخدم
+                long accountNumber = System.currentTimeMillis(); 
+                String accountType = "Savings"; 
                 double initialBalance = 0.0;
 
                 stmtAccount.setLong(1, accountNumber);

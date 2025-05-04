@@ -31,7 +31,7 @@ public class Dashboard extends javax.swing.JPanel {
     
     public Dashboard() {
     initComponents();
-    loadUserData(); // Load user data when dashboard is created
+    loadUserData(); 
 }
     
     private void loadUserData() {
@@ -103,9 +103,9 @@ public class Dashboard extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Go2Dash = new javax.swing.JButton();
+        Go2Account = new javax.swing.JButton();
+        Go2Trans = new javax.swing.JButton();
         AccountType = new javax.swing.JLabel();
         LastTransaction = new javax.swing.JLabel();
         AccNum = new javax.swing.JLabel();
@@ -115,25 +115,28 @@ public class Dashboard extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(22, 26, 48));
 
-        jButton1.setBackground(new java.awt.Color(197, 193, 187));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("dashboard");
+        Go2Dash.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Dash.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Dash.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Dash.setText("Dashboard");
 
-        jButton2.setBackground(new java.awt.Color(197, 193, 187));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("account");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Go2Account.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Account.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Account.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Account.setText("Account");
+        Go2Account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Go2AccountActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(197, 193, 187));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("transactions");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Go2Trans.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Trans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Trans.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Trans.setText("Transactions");
+        Go2Trans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                Go2TransActionPerformed(evt);
             }
         });
 
@@ -144,29 +147,33 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Go2Trans, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Go2Account, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Go2Dash, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Go2Dash, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Go2Trans, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addComponent(Go2Account, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
+        AccountType.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         AccountType.setText("Account Type");
 
+        LastTransaction.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LastTransaction.setText("Last Transaction");
 
+        AccNum.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AccNum.setText("Account number ");
 
+        name.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         name.setText("name");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -194,9 +201,9 @@ public class Dashboard extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(LastTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
@@ -216,7 +223,7 @@ public class Dashboard extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void Go2TransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2TransActionPerformed
         // Create transactions panel
         transactions transactionsPanel = new transactions();
         
@@ -231,9 +238,9 @@ public class Dashboard extends javax.swing.JPanel {
         mainFrame.revalidate();
         mainFrame.repaint();
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_Go2TransActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void Go2AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2AccountActionPerformed
         // Create account panel
         account accountPanel = new account();
         
@@ -249,16 +256,16 @@ public class Dashboard extends javax.swing.JPanel {
         mainFrame.repaint();
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Go2AccountActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AccNum;
     private javax.swing.JLabel AccountType;
+    private javax.swing.JButton Go2Account;
+    private javax.swing.JButton Go2Dash;
+    private javax.swing.JButton Go2Trans;
     private javax.swing.JLabel LastTransaction;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel name;

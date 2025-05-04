@@ -191,7 +191,7 @@ public class Login extends javax.swing.JPanel {
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
 
     
-        String email = userNametf.getText().trim();
+    String email = userNametf.getText().trim();
     String password = new String(passwordtf.getPassword());
     
     // Basic validation

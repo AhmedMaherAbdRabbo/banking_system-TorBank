@@ -50,8 +50,9 @@ public class Deposit extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Deposit = new javax.swing.JButton();
+        Backk = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(240, 236, 229));
 
         depositAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,15 +60,29 @@ public class Deposit extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("accountNumber");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel1.setText("Account Number");
 
-        jLabel2.setText("deposit amount");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel2.setText("Deposit amount");
 
-        Deposit.setBackground(new java.awt.Color(197, 193, 187));
+        Deposit.setBackground(new java.awt.Color(22, 26, 48));
+        Deposit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Deposit.setForeground(new java.awt.Color(255, 255, 255));
         Deposit.setText("Deposit");
         Deposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DepositActionPerformed(evt);
+            }
+        });
+
+        Backk.setBackground(new java.awt.Color(22, 26, 48));
+        Backk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Backk.setForeground(new java.awt.Color(255, 255, 255));
+        Backk.setText("Back");
+        Backk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackkActionPerformed(evt);
             }
         });
 
@@ -76,35 +91,41 @@ public class Deposit extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(depositAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(accountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Backk, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(accountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(186, 186, 186)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(226, 226, 226)
+                            .addComponent(depositAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
+                .addGap(32, 32, 32)
                 .addComponent(accountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel2)
-                .addGap(48, 48, 48)
+                .addGap(35, 35, 35)
                 .addComponent(depositAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Backk, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -198,8 +219,32 @@ public class Deposit extends javax.swing.JPanel {
 
     }//GEN-LAST:event_DepositActionPerformed
 
+    private void BackkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackkActionPerformed
+        transactions mainMenuPanel = new transactions();
+
+    // الحصول على JFrame الرئيسي
+    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+    // إزالة كل ما هو موجود حاليًا في الـ JFrame
+    mainFrame.getContentPane().removeAll();
+
+    // إضافة panel الجديدة
+    mainFrame.getContentPane().add(mainMenuPanel);
+
+    // ضبط حجم الإطار حسب الحجم الطبيعي للـ panel الجديدة
+    mainFrame.pack();
+
+    // تحديث وتمركز الإطار
+    mainFrame.revalidate();
+    mainFrame.repaint();
+    mainFrame.setLocationRelativeTo(null); 
+    }//GEN-LAST:event_BackkActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
+    private javax.swing.JButton Back1;
+    private javax.swing.JButton Backk;
     private javax.swing.JButton Deposit;
     private javax.swing.JTextField accountNumber;
     private javax.swing.JTextField depositAmount;

@@ -24,9 +24,7 @@ public class SplashScreen extends javax.swing.JFrame {
         setResizable(false); // Don't let anyone control the size
         setLocation(350, 150); //The window opens where I want
         
-        ImageIcon img = new ImageIcon("src/my_contacts\\peoplee.png");
-        setIconImage(img.getImage());
-        setTitle("my contacts");
+        setTitle("Tor Bank");
     }
 
     /**
@@ -47,13 +45,15 @@ public class SplashScreen extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/pngegg.png"))); // NOI18N
+
         myProgress.setBackground(new java.awt.Color(102, 102, 102));
-        myProgress.setForeground(new java.awt.Color(102, 102, 0));
+        myProgress.setForeground(new java.awt.Color(204, 204, 204));
         myProgress.setBorder(null);
         myProgress.setBorderPainted(false);
 
         tage.setFont(new java.awt.Font("Segoe Print", 0, 36)); // NOI18N
-        tage.setForeground(new java.awt.Color(163, 163, 0));
+        tage.setForeground(new java.awt.Color(204, 204, 204));
         tage.setText("%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -61,24 +61,23 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(myProgress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(jLabel1)
+                .addContainerGap(240, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(213, 213, 213))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(tage, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tage, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addComponent(tage, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(myProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -111,7 +110,7 @@ public class SplashScreen extends javax.swing.JFrame {
         e.printStackTrace();
     }
     loading.dispose();
-    new MainApp().setVisible(true); // Uncomment this if you have a login window
+    new MainApp().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

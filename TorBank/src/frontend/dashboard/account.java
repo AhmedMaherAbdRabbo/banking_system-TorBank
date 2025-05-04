@@ -34,9 +34,9 @@ public class account extends javax.swing.JPanel {
         transactions1 = new frontend.dashboard.transactions();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Go2Dash = new javax.swing.JButton();
+        Go2Trans = new javax.swing.JButton();
+        Go2Account = new javax.swing.JButton();
         UpdateName = new javax.swing.JButton();
         UpdatePassword = new javax.swing.JButton();
         UpdateAccountType = new javax.swing.JButton();
@@ -47,24 +47,33 @@ public class account extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(22, 26, 48));
 
-        jButton1.setText("dashboard");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Go2Dash.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Dash.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Dash.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Dash.setText("Dashboard");
+        Go2Dash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Go2DashActionPerformed(evt);
             }
         });
 
-        jButton3.setText("transactions");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Go2Trans.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Trans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Trans.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Trans.setText("Transactions");
+        Go2Trans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                Go2TransActionPerformed(evt);
             }
         });
 
-        jButton2.setText("account");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Go2Account.setBackground(new java.awt.Color(96, 114, 116));
+        Go2Account.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Go2Account.setForeground(new java.awt.Color(255, 255, 255));
+        Go2Account.setText("Account");
+        Go2Account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Go2AccountActionPerformed(evt);
             }
         });
 
@@ -73,26 +82,28 @@ public class account extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(Go2Account, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Go2Trans, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Go2Dash, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addComponent(Go2Dash, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(Go2Trans, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(Go2Account, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        UpdateName.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateName.setBackground(new java.awt.Color(163, 154, 140));
+        UpdateName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UpdateName.setForeground(new java.awt.Color(255, 255, 255));
         UpdateName.setText("Update Name ");
         UpdateName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +111,9 @@ public class account extends javax.swing.JPanel {
             }
         });
 
-        UpdatePassword.setBackground(new java.awt.Color(197, 193, 187));
+        UpdatePassword.setBackground(new java.awt.Color(163, 154, 140));
+        UpdatePassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UpdatePassword.setForeground(new java.awt.Color(255, 255, 255));
         UpdatePassword.setText("Update Password");
         UpdatePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +121,9 @@ public class account extends javax.swing.JPanel {
             }
         });
 
-        UpdateAccountType.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateAccountType.setBackground(new java.awt.Color(163, 154, 140));
+        UpdateAccountType.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UpdateAccountType.setForeground(new java.awt.Color(255, 255, 255));
         UpdateAccountType.setText("Update Account type");
         UpdateAccountType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +131,9 @@ public class account extends javax.swing.JPanel {
             }
         });
 
-        UpdateAge.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateAge.setBackground(new java.awt.Color(163, 154, 140));
+        UpdateAge.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UpdateAge.setForeground(new java.awt.Color(255, 255, 255));
         UpdateAge.setText("Update Age");
         UpdateAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +141,9 @@ public class account extends javax.swing.JPanel {
             }
         });
 
-        UpdateEmail.setBackground(new java.awt.Color(197, 193, 187));
+        UpdateEmail.setBackground(new java.awt.Color(163, 154, 140));
+        UpdateEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        UpdateEmail.setForeground(new java.awt.Color(255, 255, 255));
         UpdateEmail.setText("Update Email");
         UpdateEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +167,7 @@ public class account extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(UpdateAge, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                                 .addComponent(UpdatePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(UpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,22 +178,21 @@ public class account extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UpdateEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(101, 101, 101)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UpdateAge, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UpdatePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(105, 105, 105)
-                        .addComponent(UpdateAccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UpdateEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(101, 101, 101)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdateAge, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UpdatePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(105, 105, 105)
+                .addComponent(UpdateAccountType, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -189,7 +207,7 @@ public class account extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Go2DashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2DashActionPerformed
         // Get user ID
         int userId = UserController.getUserId();
 
@@ -206,9 +224,9 @@ public class account extends javax.swing.JPanel {
         // Refresh the frame to display the new panel
         mainFrame.revalidate();
         mainFrame.repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Go2DashActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void Go2TransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2TransActionPerformed
         // Create transactions panel
         transactions transactionsPanel = new transactions();
 
@@ -223,11 +241,11 @@ public class account extends javax.swing.JPanel {
         mainFrame.revalidate();
         mainFrame.repaint();
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_Go2TransActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void Go2AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2AccountActionPerformed
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Go2AccountActionPerformed
 
     private void UpdateNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateNameActionPerformed
 
@@ -392,14 +410,14 @@ public class account extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Go2Account;
+    private javax.swing.JButton Go2Dash;
+    private javax.swing.JButton Go2Trans;
     private javax.swing.JButton UpdateAccountType;
     private javax.swing.JButton UpdateAge;
     private javax.swing.JButton UpdateEmail;
     private javax.swing.JButton UpdateName;
     private javax.swing.JButton UpdatePassword;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private frontend.dashboard.transactions transactions1;
