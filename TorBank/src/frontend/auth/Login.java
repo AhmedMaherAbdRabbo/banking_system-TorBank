@@ -22,10 +22,11 @@ import javax.swing.SwingUtilities;
  * @author DELL
  */
 public class Login extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form Login
      */
+    
     public Login() {
         initComponents();
     }
@@ -194,7 +195,6 @@ public class Login extends javax.swing.JPanel {
     String email = userNametf.getText().trim();
     String password = new String(passwordtf.getPassword());
     
-    // Basic validation
     if (email.isEmpty() || password.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Email and password cannot be empty", "Login Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -211,7 +211,7 @@ public class Login extends javax.swing.JPanel {
             return;
         }
         
-        // Use PreparedStatement to prevent SQL injection
+        
         String sql = "SELECT user_id, email FROM users WHERE email = ? AND password = ?";
         stmt = conn.prepareStatement(sql);
         stmt.setString(1, email);
@@ -220,21 +220,17 @@ public class Login extends javax.swing.JPanel {
         rs = stmt.executeQuery();
         
         if (rs.next()) {
-            // Get user details from result set
             int userId = rs.getInt("user_id");
             String userEmail = rs.getString("email");
             
-            // Store user details in UserController
             UserController.setUserDetails(userId, userEmail);
             
-            // Variables to store user information
             String userName = "";
             String accountType = "";
             long accountNumber = 0;
             String lastTransaction = "No transactions found";
             double balance = 0.0;
             
-            // Get user name and additional information
             try (PreparedStatement nameStmt = conn.prepareStatement("SELECT name FROM users WHERE user_id = ?")) {
                 nameStmt.setInt(1, userId);
                 try (ResultSet nameRs = nameStmt.executeQuery()) {
@@ -243,7 +239,6 @@ public class Login extends javax.swing.JPanel {
                     }
                 }
                 
-                // Get account information using try-with-resources
                 try (PreparedStatement accountStmt = conn.prepareStatement(
                         "SELECT account_number, account_type, balance FROM accounts WHERE user_id = ?")) {
                     accountStmt.setInt(1, userId);
@@ -256,7 +251,6 @@ public class Login extends javax.swing.JPanel {
                     }
                 }
                 
-                // Get last transaction with improved query
                 try (PreparedStatement transStmt = conn.prepareStatement(
                         "SELECT transaction_type, amount, transaction_date FROM transactions " +
                         "WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1")) {
@@ -271,68 +265,40 @@ public class Login extends javax.swing.JPanel {
                     }
                 }
                 
-                // Log successful login (optional)
-                try (PreparedStatement logStmt = conn.prepareStatement(
-                        "INSERT INTO login_logs (user_id, login_time, status) VALUES (?, NOW(), ?)")) {
-                    logStmt.setInt(1, userId);
-                    logStmt.setString(2, "SUCCESS");
-                    logStmt.executeUpdate();
-                } catch (SQLException logEx) {
-                    // Non-critical error, don't disrupt login process
-                    System.err.println("Could not log login attempt: " + logEx.getMessage());
-                }
                 
             } catch (SQLException e) {
                 System.err.println("Error retrieving user data: " + e.getMessage());
-                // Continue with login process using default values
+                
             }
             
             JOptionPane.showMessageDialog(this, "Login successful. Welcome, " + userName + "!", 
                                          "Login Success", JOptionPane.INFORMATION_MESSAGE);
             
-            // Create and configure Dashboard panel
+            
             Dashboard dashboardPanel = new Dashboard();
             dashboardPanel.updateUserInfo(userName, accountType, accountNumber, lastTransaction);
             
-            // Get the main JFrame and switch to Dashboard
             JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             mainFrame.getContentPane().removeAll();
             mainFrame.getContentPane().add(dashboardPanel);
             
-            // Set appropriate size
             mainFrame.pack();
             
-            // Center the frame on screen (optional)
             mainFrame.setLocationRelativeTo(null);
             
-            // Refresh UI
             mainFrame.revalidate();
             mainFrame.repaint();
         } else {
-            // Failed login
             JOptionPane.showMessageDialog(this, "Invalid email or password", 
                                          "Login Failed", JOptionPane.ERROR_MESSAGE);
             
-            // Clear password field for security
             passwordtf.setText("");
-            
-            // Optional: Log failed login attempt
-            try (PreparedStatement logStmt = conn.prepareStatement(
-                    "INSERT INTO login_logs (email, login_time, status) VALUES (?, NOW(), ?)")) {
-                logStmt.setString(1, email);
-                logStmt.setString(2, "FAILED");
-                logStmt.executeUpdate();
-            } catch (SQLException logEx) {
-                // Non-critical error
-                System.err.println("Could not log failed login attempt: " + logEx.getMessage());
-            }
         }
     } catch (SQLException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), 
                                      "Database Error", JOptionPane.ERROR_MESSAGE);
     } finally {
-        // Close resources in reverse order of creation
         try {
             if (rs != null) rs.close();
             if (stmt != null) stmt.close();
@@ -355,7 +321,6 @@ public class Login extends javax.swing.JPanel {
 
             JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             
-            // Clear the frame's content and add the Dashboard panel
             mainFrame.getContentPane().removeAll();
             mainFrame.getContentPane().add(registerPanel);
             
@@ -363,7 +328,6 @@ public class Login extends javax.swing.JPanel {
             registerPanel.setPreferredSize(registerPanel.getPreferredSize());
             mainFrame.pack();
             
-            // Refresh the frame to display the new panel
             mainFrame.revalidate();
             mainFrame.repaint();    
 
@@ -378,7 +342,7 @@ public class Login extends javax.swing.JPanel {
         SignUp.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_SignUpMouseExited
 
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SignUp;
     private javax.swing.JButton btncancel;

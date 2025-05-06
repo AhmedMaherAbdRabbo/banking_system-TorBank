@@ -9,15 +9,11 @@ import java.math.BigDecimal;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
-// مكتبات SQL للتعامل مع قاعدة البيانات
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-// لو بتستخدم أنواع بيانات إضافية
 import java.sql.Statement;
 import backend.controllers.UserController;
 
@@ -136,11 +132,9 @@ public class Withdraw extends javax.swing.JPanel {
 
     private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
 
-        // Get account number and withdrawal amount
     long accountNum = Long.parseLong(accountNumber.getText());
     double withdrawAmt = Double.parseDouble(withdrawAmount.getText());
 
-    // Validate amount is positive
     if (withdrawAmt <= 0) {
         JOptionPane.showMessageDialog(null, "Withdrawal amount must be greater than zero.");
         return;
@@ -152,11 +146,9 @@ public class Withdraw extends javax.swing.JPanel {
             return;
         }
 
-        // Start transaction
         conn.setAutoCommit(false);
 
         try {
-            // 1. Check current balance
             String sqlBalance = "SELECT balance FROM accounts WHERE account_number = ? FOR UPDATE";
             PreparedStatement stmtBalance = conn.prepareStatement(sqlBalance);
             stmtBalance.setLong(1, accountNum);
@@ -169,7 +161,6 @@ public class Withdraw extends javax.swing.JPanel {
 
             double currentBalance = rs.getDouble("balance");
             
-            // 2. Validate sufficient funds
             if (currentBalance < withdrawAmt) {
                 JOptionPane.showMessageDialog(null, "Insufficient funds for withdrawal.");
                 return;
@@ -177,7 +168,6 @@ public class Withdraw extends javax.swing.JPanel {
 
             double newBalance = currentBalance - withdrawAmt;
 
-            // 3. Update account balance
             String sqlUpdate = "UPDATE accounts SET balance = ? WHERE account_number = ?";
             PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate);
             stmtUpdate.setDouble(1, newBalance);
@@ -189,7 +179,6 @@ public class Withdraw extends javax.swing.JPanel {
                 return;
             }
 
-            // 4. Record transaction
             int userId = UserController.getUserId();
             if (userId <= 0) {
                 JOptionPane.showMessageDialog(null, "No valid user session. Please login again.");
@@ -199,8 +188,8 @@ public class Withdraw extends javax.swing.JPanel {
             String sqlTransaction = "INSERT INTO transactions (from_account, to_account, amount, transaction_type, user_id) " +
                                    "VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmtTransaction = conn.prepareStatement(sqlTransaction);
-            stmtTransaction.setLong(1, accountNum);  // Money is coming from this account
-            stmtTransaction.setLong(2, accountNum);  // For withdrawals, to_account is same
+            stmtTransaction.setLong(1, accountNum); 
+            stmtTransaction.setLong(2, accountNum); 
             stmtTransaction.setDouble(3, withdrawAmt);
             stmtTransaction.setString(4, "Withdraw");
             stmtTransaction.setInt(5, userId);
@@ -208,7 +197,7 @@ public class Withdraw extends javax.swing.JPanel {
             int rowsInserted = stmtTransaction.executeUpdate();
 
             if (rowsInserted > 0) {
-                conn.commit();  // Commit transaction if all operations succeeded
+                conn.commit();  
                 JOptionPane.showMessageDialog(null, 
                     "Withdrawal successful! New Balance: " + newBalance);
             } else {
@@ -226,25 +215,19 @@ public class Withdraw extends javax.swing.JPanel {
     }//GEN-LAST:event_WithdrawActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-    // إنشاء panel الخاصة بالصفحة الرئيسية أو السابقة
     transactions mainMenuPanel = new transactions();
 
-    // الحصول على JFrame الرئيسي
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إزالة كل ما هو موجود حاليًا في الـ JFrame
     mainFrame.getContentPane().removeAll();
 
-    // إضافة panel الجديدة
     mainFrame.getContentPane().add(mainMenuPanel);
 
-    // ضبط حجم الإطار حسب الحجم الطبيعي للـ panel الجديدة
     mainFrame.pack();
 
-    // تحديث وتمركز الإطار
     mainFrame.revalidate();
     mainFrame.repaint();
-    mainFrame.setLocationRelativeTo(null);  // لتوسيط النافذة
+    mainFrame.setLocationRelativeTo(null); 
     }//GEN-LAST:event_BackActionPerformed
 
 

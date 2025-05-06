@@ -10,7 +10,6 @@ public class DatabaseConnections {
 
     public static Connection getConnection() {
         try {
-            // فتح الاتصال عند كل مرة يتم طلبها
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/torbank_db?zeroDateTimeBehavior=CONVERT_TO_NULL",

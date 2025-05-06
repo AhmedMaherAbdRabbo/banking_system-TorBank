@@ -23,9 +23,7 @@ import javax.swing.SwingUtilities;
  */
 public class Dashboard extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Dashboard
-     */
+
     private int userId;
     private long accountNumber;
     
@@ -39,7 +37,6 @@ public class Dashboard extends javax.swing.JPanel {
     try (Connection conn = DatabaseConnections.getConnection()) {
         if (conn == null) return;
 
-        // Load user info
         String userSql = "SELECT name FROM users WHERE user_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(userSql)) {
             stmt.setInt(1, userId);
@@ -49,7 +46,6 @@ public class Dashboard extends javax.swing.JPanel {
             }
         }
 
-        // Load account info
         String accountSql = "SELECT account_number, account_type FROM accounts WHERE user_id = ? LIMIT 1";
         try (PreparedStatement stmt = conn.prepareStatement(accountSql)) {
             stmt.setInt(1, userId);
@@ -60,7 +56,6 @@ public class Dashboard extends javax.swing.JPanel {
             }
         }
 
-        // Load last transaction
         String transSql = "SELECT transaction_type, amount, transaction_date FROM transactions " +
                          "WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1";
         try (PreparedStatement stmt = conn.prepareStatement(transSql)) {
@@ -224,34 +219,26 @@ public class Dashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Go2TransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2TransActionPerformed
-        // Create transactions panel
         transactions transactionsPanel = new transactions();
         
-        // Get the main JFrame that contains this Dashboard panel
         JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
-        // Clear the frame's content and add the transactions panel
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(transactionsPanel);
         
-        // Refresh the frame to display the new panel
         mainFrame.revalidate();
         mainFrame.repaint();
         
     }//GEN-LAST:event_Go2TransActionPerformed
 
     private void Go2AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2AccountActionPerformed
-        // Create account panel
         account accountPanel = new account();
         
-        // Get the main JFrame that contains this Dashboard panel
         JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
-        // Clear the frame's content and add the account panel
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(accountPanel);
         
-        // Refresh the frame to display the new panel
         mainFrame.revalidate();
         mainFrame.repaint();
         

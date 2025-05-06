@@ -208,36 +208,27 @@ public class account extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Go2DashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2DashActionPerformed
-        // Get user ID
         int userId = UserController.getUserId();
 
-        // Create Dashboard panel
         Dashboard dashboardPanel = new Dashboard();
 
-        // Get the main JFrame that contains the current panel
         JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        // Clear the frame's content and add the dashboard panel
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(dashboardPanel);
 
-        // Refresh the frame to display the new panel
         mainFrame.revalidate();
         mainFrame.repaint();
     }//GEN-LAST:event_Go2DashActionPerformed
 
     private void Go2TransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2TransActionPerformed
-        // Create transactions panel
         transactions transactionsPanel = new transactions();
 
-        // Get the main JFrame that contains this Dashboard panel
         JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        // Clear the frame's content and add the transactions panel
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(transactionsPanel);
 
-        // Refresh the frame to display the new panel
         mainFrame.revalidate();
         mainFrame.repaint();
 
@@ -249,58 +240,53 @@ public class account extends javax.swing.JPanel {
 
     private void UpdateNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateNameActionPerformed
 
-        // Get the current user ID
-        int userId = UserController.getUserId();
-        
-        // Get the new name from user input
-        String newName = JOptionPane.showInputDialog(this, "Enter new name:", "Update Name", JOptionPane.QUESTION_MESSAGE);
-        
-        // Check if the user canceled the input or entered an empty string
-        if (newName != null && !newName.trim().isEmpty()) {
-            // Call the updateName method from UserController
+    int userId = UserController.getUserId();
+    
+    String newName = JOptionPane.showInputDialog(this, "Enter new name:", "Update Name", JOptionPane.QUESTION_MESSAGE);
+    
+    if (newName != null && !newName.trim().isEmpty()) {
+        if (UserController.validateName(newName.trim())) {
             boolean success = UserController.updateName(userId, newName.trim());
-            
             if (success) {
                 JOptionPane.showMessageDialog(this, "Name updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to update name. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid name format. Please use only letters and spaces with at least 4 characters.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
+    }
 
     }//GEN-LAST:event_UpdateNameActionPerformed
 
     private void UpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatePasswordActionPerformed
-        // Get the current user ID
     int userId = UserController.getUserId();
-    
-    // Get the current password for validation
     String currentPassword = JOptionPane.showInputDialog(
         this, 
         "Enter current password:", 
         "Verify Password", 
-        JOptionPane.PLAIN_MESSAGE // Changed from PASSWORD_MESSAGE
+        JOptionPane.PLAIN_MESSAGE
     );
     
-    // Check if the user canceled the input
     if (currentPassword != null) {
-        // Verify the current password
         if (UserController.verifyPassword(userId, currentPassword)) {
-            // Get the new password
             String newPassword = JOptionPane.showInputDialog(
                 this, 
                 "Enter new password:", 
                 "Update Password", 
-                JOptionPane.PLAIN_MESSAGE // Changed from PASSWORD_MESSAGE
+                JOptionPane.PLAIN_MESSAGE
             );
             
             if (newPassword != null && !newPassword.trim().isEmpty()) {
-                // Call the updatePassword method from UserController
-                boolean success = UserController.updatePassword(userId, newPassword);
-                
-                if (success) {
-                    JOptionPane.showMessageDialog(this, "Password updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                if (UserController.validatePassword(newPassword)) {
+                    boolean success = UserController.updatePassword(userId, newPassword);   
+                    if (success) {
+                        JOptionPane.showMessageDialog(this, "Password updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Failed to update password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Failed to update password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Invalid password. Password must be at least 5 characters long.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
@@ -310,13 +296,10 @@ public class account extends javax.swing.JPanel {
     }//GEN-LAST:event_UpdatePasswordActionPerformed
 
     private void UpdateAccountTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountTypeActionPerformed
-        // Get the current user ID
     int userId = UserController.getUserId();
     
-    // Create options for account types
     String[] accountTypes = {"Savings", "Checking"};
     
-    // Show a dialog to select account type
     String selectedAccountType = (String) JOptionPane.showInputDialog(
         this,
         "Select new account type:",
@@ -327,18 +310,13 @@ public class account extends javax.swing.JPanel {
         accountTypes[0]
     );
     
-    // Check if the user selected an account type
     if (selectedAccountType != null) {
         try {
-            // Now get password verification
             String password = JOptionPane.showInputDialog(this, "Enter your password:", "Password Verification", JOptionPane.QUESTION_MESSAGE);
-            
             if (password != null && !password.trim().isEmpty()) {
-                // First verify the password
                 boolean passwordCorrect = UserController.verifyPassword(userId, password);
                 
                 if (passwordCorrect) {
-                    // Call the updateAccountType method without needing account number
                     boolean success = UserController.updateAccountType(userId, selectedAccountType);
                     
                     if (success) {
@@ -353,28 +331,19 @@ public class account extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }        
     }//GEN-LAST:event_UpdateAccountTypeActionPerformed
 
     private void UpdateAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAgeActionPerformed
-        // Get the current user ID
-        int userId = UserController.getUserId();
-        
-        // Get the new age from user input
-        String ageStr = JOptionPane.showInputDialog(this, "Enter new age:", "Update Age", JOptionPane.QUESTION_MESSAGE);
-        
-        // Check if the user canceled the input or entered an empty string
-        if (ageStr != null && !ageStr.trim().isEmpty()) {
+    int userId = UserController.getUserId();
+    
+    String ageStr = JOptionPane.showInputDialog(this, "Enter new age:", "Update Age", JOptionPane.QUESTION_MESSAGE);
+    
+    if (ageStr != null && !ageStr.trim().isEmpty()) {
+        if (UserController.validateAge(ageStr.trim())) {
             try {
                 int newAge = Integer.parseInt(ageStr.trim());
                 
-                // Validate age
-                if (newAge <= 0) {
-                    JOptionPane.showMessageDialog(this, "Please enter a valid age.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                
-                // Call the updateAge method from UserController
                 boolean success = UserController.updateAge(userId, newAge);
                 
                 if (success) {
@@ -385,25 +354,32 @@ public class account extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Invalid age. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid age. Please enter a positive number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
+    }
     }//GEN-LAST:event_UpdateAgeActionPerformed
 
     private void UpdateEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateEmailActionPerformed
-        // Get the current user ID
     int userId = UserController.getUserId();
     
-    // Get the new email from user input
     String newEmail = JOptionPane.showInputDialog(this, "Enter new email:", "Update Email", JOptionPane.QUESTION_MESSAGE);
     
-    // Check if the user canceled the input or entered an empty string
     if (newEmail != null && !newEmail.trim().isEmpty()) {
-        // Call the updateEmail method from UserController
-        boolean success = UserController.updateEmail(userId, newEmail.trim());
-        
-        if (success) {
-            JOptionPane.showMessageDialog(this, "Email updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        if (UserController.validateEmail(newEmail.trim())) {
+            if (!UserController.emailExists(newEmail.trim()) || newEmail.trim().equalsIgnoreCase(UserController.getEmail())) {
+                boolean success = UserController.updateEmail(userId, newEmail.trim());
+                
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Email updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to update email. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "This email is already in use. Please choose a different email.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Failed to update email. The email might already be in use.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Invalid email format. Please enter a valid email address.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
         }
     }
     }//GEN-LAST:event_UpdateEmailActionPerformed

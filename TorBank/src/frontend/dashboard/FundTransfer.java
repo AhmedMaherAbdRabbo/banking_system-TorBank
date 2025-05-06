@@ -10,15 +10,11 @@ import java.math.BigDecimal;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
-// مكتبات SQL للتعامل مع قاعدة البيانات
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-// لو بتستخدم أنواع بيانات إضافية
 import java.sql.Statement;
 import backend.controllers.UserController;
 import java.util.HashMap;
@@ -156,12 +152,10 @@ public class FundTransfer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FundTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundTransferActionPerformed
-    // Get transfer details from UI
     long fromAccount = Long.parseLong(fromAccountField.getText());
     long toAccount = Long.parseLong(transferAmountField.getText());
-    double amount = Double.parseDouble(transferAmount.getText());  // FIXED: Use transferAmount field for the amount
-
-    // Validate basic input
+    double amount = Double.parseDouble(transferAmount.getText()); 
+    
     if (amount <= 0) {
         JOptionPane.showMessageDialog(null, "Transfer amount must be greater than zero.");
         return;
@@ -178,11 +172,9 @@ public class FundTransfer extends javax.swing.JPanel {
             return;
         }
 
-        // Start transaction
         conn.setAutoCommit(false);
 
         try {
-            // 1. Verify both accounts exist and lock them
             String sqlCheckAccounts = "SELECT account_number, balance FROM accounts " +
                                     "WHERE account_number IN (?, ?) FOR UPDATE";
             PreparedStatement stmtCheck = conn.prepareStatement(sqlCheckAccounts);
@@ -197,32 +189,30 @@ public class FundTransfer extends javax.swing.JPanel {
 
             if (!accountBalances.containsKey(fromAccount)) {
                 JOptionPane.showMessageDialog(null, "Source account not found.");
-                conn.rollback();  // Added rollback
+                conn.rollback();  
                 return;
             }
 
             if (!accountBalances.containsKey(toAccount)) {
                 JOptionPane.showMessageDialog(null, "Destination account not found.");
-                conn.rollback();  // Added rollback
+                conn.rollback(); 
                 return;
             }
 
             // 2. Check sufficient funds in source account
             if (accountBalances.get(fromAccount) < amount) {
                 JOptionPane.showMessageDialog(null, "Insufficient funds for transfer.");
-                conn.rollback();  // Added rollback
+                conn.rollback();  
                 return;
             }
 
-            // 3. Update both accounts
-            // Deduct from source account
+            
             String sqlUpdateFrom = "UPDATE accounts SET balance = balance - ? WHERE account_number = ?";
             PreparedStatement stmtUpdateFrom = conn.prepareStatement(sqlUpdateFrom);
             stmtUpdateFrom.setDouble(1, amount);
             stmtUpdateFrom.setLong(2, fromAccount);
             int fromUpdated = stmtUpdateFrom.executeUpdate();
 
-            // Add to destination account
             String sqlUpdateTo = "UPDATE accounts SET balance = balance + ? WHERE account_number = ?";
             PreparedStatement stmtUpdateTo = conn.prepareStatement(sqlUpdateTo);
             stmtUpdateTo.setDouble(1, amount);
@@ -235,7 +225,6 @@ public class FundTransfer extends javax.swing.JPanel {
                 return;
             }
 
-            // 4. Record transaction
             int userId = UserController.getUserId();
             if (userId <= 0) {
                 conn.rollback();
@@ -261,7 +250,6 @@ public class FundTransfer extends javax.swing.JPanel {
                     "Transfer successful! $" + amount + " transferred from account " + 
                     fromAccount + " to account " + toAccount);
                 
-                // Clear input fields after successful transfer
                 fromAccountField.setText("");
                 transferAmountField.setText("");
                 transferAmount.setText("");
@@ -286,25 +274,16 @@ public class FundTransfer extends javax.swing.JPanel {
     }//GEN-LAST:event_fromAccountFieldActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // إنشاء panel الخاصة بالصفحة الرئيسية أو السابقة
     transactions mainMenuPanel = new transactions();
-
-    // الحصول على JFrame الرئيسي
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إزالة كل ما هو موجود حاليًا في الـ JFrame
     mainFrame.getContentPane().removeAll();
-
-    // إضافة panel الجديدة
     mainFrame.getContentPane().add(mainMenuPanel);
-
-    // ضبط حجم الإطار حسب الحجم الطبيعي للـ panel الجديدة
     mainFrame.pack();
 
-    // تحديث وتمركز الإطار
     mainFrame.revalidate();
     mainFrame.repaint();
-    mainFrame.setLocationRelativeTo(null);  // لتوسيط النافذة
+    mainFrame.setLocationRelativeTo(null); 
     }//GEN-LAST:event_BackActionPerformed
 
 

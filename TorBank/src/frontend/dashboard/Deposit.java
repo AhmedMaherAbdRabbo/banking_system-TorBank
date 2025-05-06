@@ -4,21 +4,16 @@
  */
 package frontend.dashboard;
 
-// مكتبات Swing لواجهة المستخدم
 import backend.connections.DatabaseConnections;
 import java.math.BigDecimal;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
-// مكتبات SQL للتعامل مع قاعدة البيانات
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-// لو بتستخدم أنواع بيانات إضافية
 import java.sql.Statement;
 
 
@@ -146,63 +141,52 @@ public class Deposit extends javax.swing.JPanel {
 
     private void DepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositActionPerformed
 
-        // الحصول على رقم الحساب والمبلغ للإيداع
     long accountNum = Long.parseLong(accountNumber.getText());
     double depositAmt = Double.parseDouble(depositAmount.getText());
 
-    // التحقق من أن المبلغ أكبر من الصفر
     if (depositAmt <= 0) {
         JOptionPane.showMessageDialog(null, "Amount to deposit should be greater than zero.");
         return;
     }
 
-    // فتح الاتصال بقاعدة البيانات
     try (Connection conn = DatabaseConnections.getConnection()) {
         if (conn == null) {
             JOptionPane.showMessageDialog(null, "Failed to connect to the database");
             return;
         }
 
-        // استعلام للتحقق من الرصيد الحالي في الحساب
         String sqlBalance = "SELECT balance FROM accounts WHERE account_number = ?";
         PreparedStatement stmtBalance = conn.prepareStatement(sqlBalance);
         stmtBalance.setLong(1, accountNum);
         ResultSet rs = stmtBalance.executeQuery();
 
-        // إذا لم يتم العثور على الحساب، إظهار رسالة خطأ
         if (!rs.next()) {
             JOptionPane.showMessageDialog(null, "Account not found.");
             return;
         }
 
-        // الحصول على الرصيد الحالي
         double currentBalance = rs.getDouble("balance");
         double newBalance = currentBalance + depositAmt;
 
-        // استعلام لتحديث الرصيد في الحساب
         String sqlUpdateBalance = "UPDATE accounts SET balance = ? WHERE account_number = ?";
         PreparedStatement stmtUpdateBalance = conn.prepareStatement(sqlUpdateBalance);
         stmtUpdateBalance.setDouble(1, newBalance);
         stmtUpdateBalance.setLong(2, accountNum);
         int rowsUpdated = stmtUpdateBalance.executeUpdate();
 
-        // إذا تم تحديث الرصيد بنجاح، إضافة المعاملة
         if (rowsUpdated > 0) {
-            // الحصول على user_id من UserController
             int userId = backend.controllers.UserController.getUserId();
 
-            // استعلام لإدخال المعاملة في جدول المعاملات
             String sqlTransaction = "INSERT INTO transactions (from_account, to_account, amount, transaction_type, user_id) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmtTransaction = conn.prepareStatement(sqlTransaction);
-            stmtTransaction.setLong(1, accountNum);  // الحساب المصدر (من نفس الحساب للإيداع)
-            stmtTransaction.setLong(2, accountNum);  // الحساب الهدف (من نفس الحساب للإيداع)
-            stmtTransaction.setDouble(3, depositAmt);  // المبلغ
-            stmtTransaction.setString(4, "Deposit");  // نوع المعاملة (إيداع)
-            stmtTransaction.setInt(5, userId);  // user_id من UserController
+            stmtTransaction.setLong(1, accountNum); 
+            stmtTransaction.setLong(2, accountNum); 
+            stmtTransaction.setDouble(3, depositAmt); 
+            stmtTransaction.setString(4, "Deposit");  
+            stmtTransaction.setInt(5, userId); 
 
             int rowsInserted = stmtTransaction.executeUpdate();
 
-            // إذا تم إدخال المعاملة بنجاح
             if (rowsInserted > 0) {
                 JOptionPane.showMessageDialog(null, "Deposit successful! New Balance: " + newBalance);
             } else {
@@ -222,19 +206,14 @@ public class Deposit extends javax.swing.JPanel {
     private void BackkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackkActionPerformed
         transactions mainMenuPanel = new transactions();
 
-    // الحصول على JFrame الرئيسي
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إزالة كل ما هو موجود حاليًا في الـ JFrame
     mainFrame.getContentPane().removeAll();
 
-    // إضافة panel الجديدة
     mainFrame.getContentPane().add(mainMenuPanel);
 
-    // ضبط حجم الإطار حسب الحجم الطبيعي للـ panel الجديدة
     mainFrame.pack();
 
-    // تحديث وتمركز الإطار
     mainFrame.revalidate();
     mainFrame.repaint();
     mainFrame.setLocationRelativeTo(null); 

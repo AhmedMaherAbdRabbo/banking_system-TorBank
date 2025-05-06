@@ -265,17 +265,14 @@ public class Register extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-
-    
     String name = tfName.getText();
     String email = tfEmail.getText();
     String age = tfAge.getText();
     String password = new String(tfPassword.getPassword());
     String confirmPassword = new String(tfPasswordconfirm.getPassword());
 
-    if (!password.equals(confirmPassword)) {
-        JOptionPane.showMessageDialog(null, "Password and confirm password do not match");
-        return;
+    if (!validateInputs(name, age, email, password, confirmPassword)) {
+        return; 
     }
 
     try (Connection conn = DatabaseConnections.getConnection()) {
@@ -284,7 +281,6 @@ public class Register extends javax.swing.JPanel {
             return;
         }
 
-        
         String sqlUser = "INSERT INTO users (name, email, age, password) VALUES (?, ?, ?, ?)";
         PreparedStatement stmtUser = conn.prepareStatement(sqlUser, java.sql.Statement.RETURN_GENERATED_KEYS);
 
@@ -296,12 +292,10 @@ public class Register extends javax.swing.JPanel {
         int rowsAffected = stmtUser.executeUpdate();
 
         if (rowsAffected > 0) {
-            
             ResultSet generatedKeys = stmtUser.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int userId = generatedKeys.getInt(1);
 
-                
                 String sqlAccount = "INSERT INTO accounts (account_number, account_type, balance, user_id) VALUES (?, ?, ?, ?)";
                 PreparedStatement stmtAccount = conn.prepareStatement(sqlAccount);
                 
@@ -317,6 +311,7 @@ public class Register extends javax.swing.JPanel {
                 stmtAccount.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "User and account created successfully.");
+                clear();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Failed to insert user.");
@@ -326,9 +321,49 @@ public class Register extends javax.swing.JPanel {
         e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage());
     }
-      
     }//GEN-LAST:event_jButton1ActionPerformed
 
+
+    private boolean validateInputs(String name, String age, String email, String password, String confirmPassword) {
+    if (!backend.controllers.UserController.validateName(name)) {
+        JOptionPane.showMessageDialog(null, "Invalid name. Name should contain only letters and be at least 4 characters long.");
+        tfName.requestFocus();
+        return false;
+    }
+    
+    if (!backend.controllers.UserController.validateAge(age)) {
+        JOptionPane.showMessageDialog(null, "Invalid age. Age should be a number between 18 and 120.");
+        tfAge.requestFocus();
+        return false;
+    }
+    
+    if (!backend.controllers.UserController.validateEmail(email)) {
+        JOptionPane.showMessageDialog(null, "Invalid email format. Please enter a valid email address.");
+        tfEmail.requestFocus();
+        return false;
+    }
+    
+    if (backend.controllers.UserController.emailExists(email)) {
+        JOptionPane.showMessageDialog(null, "This email is already registered. Please use a different email.");
+        tfEmail.requestFocus();
+        return false;
+    }
+    
+    if (!backend.controllers.UserController.validatePassword(password)) {
+        JOptionPane.showMessageDialog(null, "Password must be more than 4 characters long.");
+        tfPassword.requestFocus();
+        return false;
+    }
+    
+    if (!password.equals(confirmPassword)) {
+        JOptionPane.showMessageDialog(null, "Password and confirm password do not match.");
+        tfPasswordconfirm.requestFocus();
+        return false;
+    }
+    
+    return true; 
+}
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         System.exit(0);
@@ -349,12 +384,8 @@ public class Register extends javax.swing.JPanel {
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
     
     Login registerPanel = new Login();
-
-    
-    // Get the main JFrame that contains this Login panel
             JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             
-            // Clear the frame's content and add the Dashboard panel
             mainFrame.getContentPane().removeAll();
             mainFrame.getContentPane().add(registerPanel);
             
@@ -362,7 +393,6 @@ public class Register extends javax.swing.JPanel {
             registerPanel.setPreferredSize(registerPanel.getPreferredSize());
             mainFrame.pack();
             
-            // Refresh the frame to display the new panel
             mainFrame.revalidate();
             mainFrame.repaint();
 
@@ -381,7 +411,7 @@ public class Register extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tfNameActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

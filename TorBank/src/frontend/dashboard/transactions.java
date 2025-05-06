@@ -10,15 +10,11 @@ import java.math.BigDecimal;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
-// مكتبات SQL للتعامل مع قاعدة البيانات
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-// لو بتستخدم أنواع بيانات إضافية
 import java.sql.Statement;
 import backend.controllers.UserController;
 import java.util.HashMap;
@@ -229,7 +225,6 @@ public class transactions extends javax.swing.JPanel {
     private void CheckBalncedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBalncedActionPerformed
 
         try {
-        // Get current user's account balance
         int userId = UserController.getUserId();
         String sql = "SELECT balance FROM accounts WHERE user_id = ?";
         
@@ -263,26 +258,16 @@ public class transactions extends javax.swing.JPanel {
     }//GEN-LAST:event_CheckBalncedActionPerformed
 
     private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
-    // أنشئ panel الخاصة بـ Withdraw
     Withdraw withdrawPanel = new Withdraw();
 
-    // الحصول على JFrame الرئيسي
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-    // إزالة جميع المحتويات القديمة
     mainFrame.getContentPane().removeAll();
-
-    // إضافة panel الجديدة
     mainFrame.getContentPane().add(withdrawPanel);
 
-    // إعادة ترتيب العناصر
-    mainFrame.pack();  // تجعل حجم الإطار يتناسب مع حجم الـ panel الجديدة
-
-    // إعادة رسم وتحديث الإطار
+    mainFrame.pack();
     mainFrame.revalidate();
     mainFrame.repaint();
 
-    // إعادة وضع النافذة في منتصف الشاشة (اختياري)
     mainFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_WithdrawActionPerformed
 
@@ -325,61 +310,40 @@ public class transactions extends javax.swing.JPanel {
     }//GEN-LAST:event_TransactionHistoryActionPerformed
 
     private void DepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositActionPerformed
-        // أنشئ صفحة Deposit
     Deposit depositPanel = new Deposit();
 
-    // الحصول على JFrame الرئيسي
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إزالة جميع المحتويات القديمة
     mainFrame.getContentPane().removeAll();
 
-    // إضافة panel الجديدة
     mainFrame.getContentPane().add(depositPanel);
 
-    // إعادة ترتيب العناصر
-    mainFrame.pack();  // تجعل حجم الإطار يتناسب مع حجم الـ panel الجديدة
-
-    // إعادة رسم وتحديث الإطار
+    mainFrame.pack(); 
     mainFrame.revalidate();
     mainFrame.repaint();
-
-    // إعادة وضع النافذة في منتصف الشاشة (اختياري)
     mainFrame.setLocationRelativeTo(null);
     }//GEN-LAST:event_DepositActionPerformed
 
     private void Go2DashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2DashActionPerformed
-    // Get user ID
     int userId = UserController.getUserId();
 
-    // Create Dashboard panel
     Dashboard dashboardPanel = new Dashboard();
-
-    // Get the main JFrame that contains the current panel
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-    // Clear the frame's content and add the dashboard panel
     mainFrame.getContentPane().removeAll();
     mainFrame.getContentPane().add(dashboardPanel);
 
-    // Refresh the frame to display the new panel
     mainFrame.revalidate();
     mainFrame.repaint();
     }//GEN-LAST:event_Go2DashActionPerformed
 
     private void Go2AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Go2AccountActionPerformed
        
-        // أنشئ صفحة Account
 account accountPanel = new account();
 
-    // الحصول على الإطار الرئيسي الذي يحتوي على هذا الـ panel
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إزالة جميع المحتويات من الإطار وإضافة لوحة الحساب
     mainFrame.getContentPane().removeAll();
     mainFrame.getContentPane().add(accountPanel);
-
-    // تحديث الإطار لعرض اللوحة الجديدة
     mainFrame.revalidate();
     mainFrame.repaint();
 
@@ -387,25 +351,18 @@ account accountPanel = new account();
 
     private void FundTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundTransferActionPerformed
 
-    // أنشئ صفحة FundTransfer
     FundTransfer fundTransferPanel = new FundTransfer();
 
-    // الحصول على JFrame الرئيسي
     JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-    // إزالة كل ما هو موجود حاليًا في الـ JFrame
     mainFrame.getContentPane().removeAll();
 
-    // إضافة panel الجديدة
     mainFrame.getContentPane().add(fundTransferPanel);
-
-    // ضبط حجم الإطار حسب الحجم الطبيعي للـ panel الجديدة
     mainFrame.pack();
 
-    // تحديث وتمركز الإطار
     mainFrame.revalidate();
     mainFrame.repaint();
-    mainFrame.setLocationRelativeTo(null);  // لتوسيط النافذة
+    mainFrame.setLocationRelativeTo(null);  
         
         
     }//GEN-LAST:event_FundTransferActionPerformed
